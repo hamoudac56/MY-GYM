@@ -1,0 +1,36 @@
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+#include <gtk/gtk.h>
+
+#include "callbacks.h"
+#include "interface.h"
+#include "support.h"
+
+void
+on_button1_clicked                     (GtkWidget       *objet_graphique,
+                                        gpointer         user_data)
+{
+	FILE*f;
+	char login[20]; char password[20]; char templog[20]; char temppass[20];
+	int role;
+	GtkWidget *input1;
+	GtkWidget *input2;
+	GtkWidget *output;
+	GtkWidget *Admin;
+	input1=lookup_widget(objet_graphique,"entry1");
+	input2=lookup_widget(objet_graphique,"entry2");
+	strcpy(login,gtk_entry_get_text(GTK_ENTRY(input1)));
+	strcpy(password,gtk_entry_get_text(GTK_ENTRY(input2)));
+	f=fopen("/home/josef/users.txt","r");
+        while(fscanf(f,"%s %s %d \n",templogif,temppass,&role)!=EOF)
+        {
+                if(strcmp(login,templog)==0 && strcmp(password,temppass)==0 && role==1)
+                {Admin=create_Admin();
+		gtk_widget_show(Admin);
+		break;}
+        fclose(f);
+	return 0;
+}}
+
